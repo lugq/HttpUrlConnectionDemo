@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.lugq.httpdemo.net.HttpUtils;
 
@@ -17,12 +18,14 @@ public class MainActivity extends AppCompatActivity {
     private static final String CHARGE_URL = "http://www.mocky.io/v2/596c7afc10000049027e2111";
 
     private Button button;
+    private TextView tv_json;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button = (Button) findViewById(R.id.button);
+        tv_json = (TextView) findViewById(R.id.tv_json);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String data) {
+            tv_json.setText(data);
             if (null == data) {
                 Log.i("请求出错", "请检查URL");
             }
